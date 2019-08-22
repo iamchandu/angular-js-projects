@@ -1,0 +1,61 @@
+<div  ng-controller="home as homectrl">
+	<div ng-show="homectrl.maintab">
+		<div class="row">
+			<div class="col-sm-6">
+					<form>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon"><i class="fa fa-search"></i></div>
+							<input type="text" class="form-control" placeholder="Search.." ng-model="homectrl.searchData">
+						</div>      
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-6">
+				<div class="row text-right" >
+					<i class="fa fa-long-arrow-up"></i><i class="fa fa-long-arrow-down"></i> Order BY : &nbsp; &nbsp;
+					<b ng-click="homectrl.sortType = 'song'; homectrl.sortReverse = !homectrl.sortReverse">
+						<i class="fa fa-thumb-tack"></i> Title
+						<span ng-show="homectrl.sortType == 'song' && !homectrl.sortReverse" class="fa fa-caret-down"></span>
+						<span ng-show="homectrl.sortType == 'song' && homectrl.sortReverse" class="fa fa-caret-up"></span>
+					</b> | 
+					<b ng-click="homectrl.sortType = 'artists'; homectrl.sortReverse = !homectrl.sortReverse">
+						<i class="fa fa-address-book-o"></i> Artists
+						<span ng-show="homectrl.sortType == 'artists' && !homectrl.sortReverse" class="fa fa-caret-down"></span>
+						<span ng-show="homectrl.sortType == 'artists' && homectrl.sortReverse" class="fa fa-caret-up"></span>
+					</b> 
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6" ng-repeat="doll in homectrl.tab | filter:homectrl.searchData | orderBy:homectrl.sortType:homectrl.sortReverse">
+			<div class="panel panel-info panview">
+				<div class="panel-body" ng-click="homectrl.detailview(doll.song)">
+					<div class="col-sm-12">
+						<div class="col-sm-4">
+							<img class="img-thumbnail" ng-src='{{doll.cover_image}}' alt="{{doll.song}}"/>
+						</div>
+						<div class="col-sm-8">
+							<h4><i class="fa fa-music"></i> {{doll.song}}</h4>
+							<p><i class="fa fa-users"></i> <b>{{doll.artists}}</b></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-hide="homectrl.maintab">
+		<div class="col-sm-12">
+			<div class="col-sm-12"><h2><i class="glyphicon glyphicon-cd"></i> {{homectrl.detaldata.song}}  <small> - <i class="fa fa-microphone"></i> {{homectrl.detaldata.artists}}</small></h2></div>
+				<div class="col-sm-12">
+					<ol class="breadcrumb text-right">
+						<li class="breadcrumb-item"><a ng-click="homectrl.backbt()"><i class="fa fa-home"></i> Home</a></li>
+						<li class="breadcrumb-item active"><i class="glyphicon glyphicon-music"></i> {{homectrl.detaldata.song}}</li>
+					</ol>
+				</div>
+			<div class="col-sm-12 blackbg">
+				<img class="img-responsive sstimg" ng-src='{{homectrl.detaldata.cover_image}}' />
+			</div>
+			<audio class="col-sm-12" ng-src="{{homectrl.detaldata.url}}" audioplayer controls></audio>
+		</div>
+	</div>
+</div>

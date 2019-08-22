@@ -1,0 +1,62 @@
+<div ng-controller="viewmatches as matchesCtrl">
+    <div class='col-sm-12'>
+        <div class='col-sm-6'><h2>View Matches</h2></div>
+        <div class="col-sm-6">
+            <form>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search.." ng-model="matchesCtrl.searchData">
+                    </div>      
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr class='col-sm-12'>
+    <div class='col-sm-12'>
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>
+                         <b ng-click="matchesCtrl.sortType = 'season'; matchesCtrl.sortReverse = !matchesCtrl.sortReverse">
+                            Season
+                            <span ng-show="matchesCtrl.sortType == 'season' && !matchesCtrl.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="matchesCtrl.sortType == 'season' && matchesCtrl.sortReverse" class="fa fa-caret-up"></span>
+                        </b>
+                    </th>
+                    <th>
+                        <b ng-click="matchesCtrl.sortType = 'date'; matchesCtrl.sortReverse = !matchesCtrl.sortReverse">
+                            Date
+                            <span ng-show="matchesCtrl.sortType == 'date' && !matchesCtrl.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="matchesCtrl.sortType == 'date' && matchesCtrl.sortReverse" class="fa fa-caret-up"></span>
+                        </b>
+                    </th>
+                    <th>
+                        <b ng-click="matchesCtrl.sortType = 'city'; matchesCtrl.sortReverse = !matchesCtrl.sortReverse">
+                            City
+                            <span ng-show="matchesCtrl.sortType == 'city' && !matchesCtrl.sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="matchesCtrl.sortType == 'city' && matchesCtrl.sortReverse" class="fa fa-caret-up"></span>
+                        </b>
+                    </th>
+                    <th>Team1</th>
+                    <th>Team2</th>
+                    <th>Winner</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mat in matchesCtrl.matches | filter:matchesCtrl.searchData | orderBy:matchesCtrl.sortType:matchesCtrl.sortReverse | limitTo : 500 : 0">
+                    <td>{{$index+1}}</td>
+                    <td><a href='#viewmatches/season/{{mat.season}}'>{{mat.season}}</a></td>
+                    <td>{{mat.date | date }}</td>
+                    <td>{{mat.city}}</td>
+                    <td>{{mat.team1}}</td>
+                    <td>{{mat.team2}}</td>
+                    <td>{{mat.winner}}</td>
+                    <td><a href='#match/{{mat.id}}'>View</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

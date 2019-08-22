@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Coke Studio</title>
+		<link href="resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="resource/font-mfizz/font-mfizz.css" rel="stylesheet">
+		<link href="resource/style.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="resource/bootstrap/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-cookies.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<script src="app/app.js"></script>
+		<script src="resource/angularjs-crypto.js"></script>
+		<script src="resource/CryptoJSCipher.js"></script>
+		<!-- cryptojs aes files -->
+    	<script type='text/javascript' src="resource/aes.js"></script>	
+	</head>
+	<body ng-app="cokestudio">
+		<header></header>
+			<div class="loading" ng-show="loading" >
+				<div class="loading-spiner">
+					<img class="col-sm-offset-5" src="resource/spinner.gif" />
+				</div>
+			</div>
+			<div class="container">
+				<div ng-view></div>
+			</div>
+	
+		<footer> </footer>
+	</body>
+</html>

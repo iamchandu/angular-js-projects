@@ -1,0 +1,72 @@
+<div ng-controller='match as matchCtrl'>
+    <h2>{{matchCtrl.matchdetails.team1}} <b class='label label-primary'>Vs</b> {{matchCtrl.matchdetails.team2}} </h2>
+     <h4>{{matchCtrl.matchdetails.date | date}}</h4>
+     <hr/>
+
+     <div class='col-sm-12'>
+         <table class='table table-striped'>
+            <tbody>
+                <tr>
+                    <td>Season</td><td>{{matchCtrl.matchdetails.season}}</td><td>Date</td><td>{{matchCtrl.matchdetails.date | date}}</td>
+                </tr>
+                <tr>
+                    <td>City</td><td>{{matchCtrl.matchdetails.city}}</td><td>Venu</td><td>{{matchCtrl.matchdetails.venue}}</td>
+                </tr>
+                <tr>
+                    <td>Toss Winner</td><td>{{matchCtrl.matchdetails.toss_winner}}</td><td>Toss Decision</td><td>{{matchCtrl.matchdetails.toss_decision}}</td>
+                </tr>
+                <tr>
+                    <td>Match Winner</td><td>{{matchCtrl.matchdetails.winner}}</td><td>Win By</td>
+                    <td ng-if="matchCtrl.matchdetails.win_by_runs == 0">{{matchCtrl.matchdetails.win_by_wickets}} Wickets</td>
+                    <td ng-if="matchCtrl.matchdetails.win_by_wickets == 0">{{matchCtrl.matchdetails.win_by_runs}} Runs</td>
+                </tr>
+                <tr>
+                    <td>Man Of The Match</td><td>{{matchCtrl.matchdetails.player_of_match}}</td><td>Umpire 1</td><td>{{matchCtrl.matchdetails.umpire1}}</td>
+                </tr>
+                <tr>
+                    <td>Umpire 2</td><td>{{matchCtrl.matchdetails.umpire2}}</td><td>Umpire 3</td><td>{{matchCtrl.matchdetails.umpire3}}</td>
+                </tr>
+            </tbody>
+         </table>
+     </div>
+     <div class='col-sm-6'>
+     <h4>Hilights (4's)</h4><hr/>
+     <ul>
+         <li ng-repeat='fours in matchCtrl.matchfours'>{{fours.over}}.{{fours.ball}} : <b>{{fours.bowler}}</b> to <b>{{fours.batsman}}</b>, Wow!! 4 Runs</li>
+     </ul>
+     </div>
+     <div class='col-sm-6'>
+     <h4>Hilights (6's)</h4><hr/>
+     <ul>
+         <li ng-repeat='fours in matchCtrl.matchsixes'>{{fours.over}}.{{fours.ball}} : <b>{{fours.bowler}}</b> to <b>{{fours.batsman}}</b>, Smash!! By {{fours.batsman}} 6 runs.</li>
+     </ul>
+     </div>
+     <!--<table class='table'>
+         <thead>
+             <tr>
+                 <th>S.No</th>
+                 <th>Innings</th>
+                 <th>Batting Team</th>
+                 <th>Bowling Team</th>
+                 <th>Over</th>
+                 <th>Ball</th>
+                 <th>Batsman</th>
+                 <th>Bowler</th>
+                 <th>Total Runs</th>
+             </tr>
+         </thaed>
+         <tbody>
+             <tr ng-repeat="matss in matchCtrl.matchoverview">
+                <td>{{$index+1}}</td>
+                <td>{{matss.inning}}</td>
+                <td>{{matss.batting_team}}</td>
+                <td>{{matss.bowling_team}}</td>
+                <td>{{matss.over}}</td>
+                <td>{{matss.ball}}</td>
+                <td>{{matss.batsman}}</td>
+                <td>{{matss.bowler}}</td>
+                <td>{{matss.total_runs}}</td>
+             </tr>
+         </tbody>
+     </table>-->
+</div>

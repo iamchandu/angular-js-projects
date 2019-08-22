@@ -1,0 +1,65 @@
+<div  ng-controller="home as homectrl">
+	<div ng-show="homectrl.maintab">
+		<div class="row">
+			<div class="col-sm-6">
+					<form>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon"><i class="fa fa-search"></i></div>
+							<input type="text" class="form-control" placeholder="Search.." ng-model="homectrl.searchData">
+						</div>      
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-6">
+				<div class="row text-right" >
+					Order BY &nbsp; &nbsp; : &nbsp;
+					<b ng-click="homectrl.sortType = 'title'; homectrl.sortReverse = !homectrl.sortReverse">
+						Title
+						<span ng-show="homectrl.sortType == 'title' && !homectrl.sortReverse" class="fa fa-caret-down"></span>
+						<span ng-show="homectrl.sortType == 'title' && homectrl.sortReverse" class="fa fa-caret-up"></span>
+					</b> | 
+					<b ng-click="homectrl.sortType = 'amt_pledged'; homectrl.sortReverse = !homectrl.sortReverse">
+						Pledged
+						<span ng-show="homectrl.sortType == 'amt_pledged' && !homectrl.sortReverse" class="fa fa-caret-down"></span>
+						<span ng-show="homectrl.sortType == 'amt_pledged' && homectrl.sortReverse" class="fa fa-caret-up"></span>
+					</b> | 
+					<b ng-click="homectrl.sortType = 'num_backers'; homectrl.sortReverse = !homectrl.sortReverse">
+						Backers
+						<span ng-show="homectrl.sortType == 'num_backers' && !homectrl.sortReverse" class="fa fa-caret-down"></span>
+						<span ng-show="homectrl.sortType == 'num_backers' && homectrl.sortReverse" class="fa fa-caret-up"></span>
+					</b>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4" ng-repeat="doll in homectrl.tab | filter:homectrl.searchData | orderBy:homectrl.sortType:homectrl.sortReverse">
+			<div class="panel panel-info panview">
+				<div class="panel-body" ng-click="homectrl.detailview(doll.sno)">
+					<div class="col-sm-12">
+						<h4>{{doll.title}}</h4>
+						<p>Pledged : <b>{{doll.amt_pledged | currency}}</b>  |  Backers : <b>{{doll.num_backers}}</b></p>
+						<p>End Date : <b>{{doll.end_time | date}}</b></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-hide="homectrl.maintab">
+		<div class="row"><button class="btn btn-primary" ng-click="homectrl.backbt()"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button></div>
+		<div class="col-sm-12">
+			<h3>{{homectrl.detaldata.title}}</h3>
+			<table class="table">
+				<tr><th class="col-sm-4">Pledged</th><td class="col-sm-8">{{homectrl.detaldata.amt_pledged | currency}}</td></tr>
+				<tr><th>Backers</th><td>{{homectrl.detaldata.num_backers}}</td></tr>
+				<tr><th>End Date</th><td>{{homectrl.detaldata.end_time | date}}</td></tr>
+				<tr><th>By</th><td>{{homectrl.detaldata.by}}</td></tr>
+				<tr><th>Percentage Funded</th><td>{{homectrl.detaldata.percentage_funded}}% </td></tr>
+				<tr><th>Type</th><td>{{homectrl.detaldata.type}}</td></tr>
+				<tr><th>Location</th><td>{{homectrl.detaldata.location}}</td></tr>
+				<tr><th>State</th><td>{{homectrl.detaldata.state}}</td></tr>
+				<tr><th>Country</th><td>{{homectrl.detaldata.country}}</td></tr>
+				<tr><th>Blurb</th><td>{{homectrl.detaldata.blurb}}</td></tr>
+			</table>
+		</div>
+	</div>
+</div>
